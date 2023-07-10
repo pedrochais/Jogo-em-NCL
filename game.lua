@@ -10,26 +10,32 @@ local deslocamento = 50
 
 -- Cordenadas do jogador
 local cordenadas_jogador = {
-	{ 0, 0 },  -- Fase 1
-	{ 0, 0 },  -- Fase 2
-	{ 0, 0 },  -- Fase 3
-	{ 0, 0 },  -- Fase 4
-	{ 0, 0 },  -- Fase 5
-	{ 4, 4 },  -- Fase 6
-	{1, 9},  -- Fase 7
-	{10, 10},  -- Fim
+	{ 0,  0 }, -- Fase 1
+	{ 0,  0 }, -- Fase 2
+	{ 0,  0 }, -- Fase 3
+	{ 0,  0 }, -- Fase 4
+	{ 0,  0 }, -- Fase 5
+	{ 4,  4 }, -- Fase 6
+	{ 1,  9 }, -- Fase 7
+	{ 0,  1 }, -- Fase 8
+	{ 0,  0 }, -- Fase 9
+	{ 9,  9 }, -- Fase 10
+	{ 10, 10 }, -- Fim
 }
 
 -- Cordenadas da chegada
 local cordenadas_chegada = {
-	{ 9, 9 },  -- Fase 1
-	{ 9, 9 },  -- Fase 2 
-	{ 5, 5 },  -- Fase 3
-	{ 9, 9 },  -- Fase 4
-	{ 9, 9 },  -- Fase 5
-	{ 4, 9 },  -- Fase 6 
-	{9, 0},  -- Fase 7
-	{10, 10},  -- Fim
+	{ 9,  9 }, -- Fase 1
+	{ 9,  9 }, -- Fase 2
+	{ 5,  5 }, -- Fase 3
+	{ 9,  9 }, -- Fase 4
+	{ 9,  9 }, -- Fase 5
+	{ 4,  9 }, -- Fase 6
+	{ 9,  0 }, -- Fase 7
+	{ 1,  0 }, -- Fase 8
+	{ 9,  0 }, -- Fase 9
+	{ 4,  9 }, -- Fase 10
+	{ 10, 10 }, -- Fim
 }
 
 -- Cordenadas dos obstáculos
@@ -118,6 +124,42 @@ local cordenadas_obstaculos = {
 		{ 0, 1, 0, 0, 1, 0, 0, 1, 0, 0 },
 		{ 0, 0, 1, 0, 0, 0, 0, 0, 1, 0 },
 	},
+	{ -- Fase 8
+		{ 1, 0, 0, 0, 0, 0, 1, 0, 0, 0 },
+		{ 0, 1, 1, 1, 1, 0, 0, 0, 1, 0 },
+		{ 0, 1, 1, 0, 0, 1, 1, 1, 0, 0 },
+		{ 0, 1, 0, 1, 0, 0, 0, 0, 0, 1 },
+		{ 0, 1, 0, 0, 1, 0, 0, 1, 1, 0 },
+		{ 0, 0, 1, 0, 0, 1, 0, 0, 0, 0 },
+		{ 1, 0, 1, 0, 0, 0, 1, 0, 0, 1 },
+		{ 0, 0, 1, 0, 1, 0, 0, 1, 0, 0 },
+		{ 0, 1, 0, 0, 1, 0, 0, 0, 1, 0 },
+		{ 0, 0, 0, 1, 0, 0, 1, 0, 0, 0 },
+	},
+	{ -- Fase 9
+		{ 0, 1, 1, 1, 0, 0, 1, 1, 1, 0 },
+		{ 0, 1, 1, 1, 0, 0, 1, 1, 1, 0 },
+		{ 0, 1, 1, 1, 0, 0, 1, 1, 1, 0 },
+		{ 0, 1, 1, 1, 1, 1, 1, 1, 1, 0 },
+		{ 0, 1, 1, 1, 1, 1, 1, 1, 1, 0 },
+		{ 0, 1, 1, 1, 1, 1, 1, 1, 1, 0 },
+		{ 0, 1, 1, 1, 0, 0, 1, 1, 1, 0 },
+		{ 0, 1, 1, 1, 0, 0, 1, 1, 1, 0 },
+		{ 0, 1, 1, 1, 0, 0, 1, 1, 1, 0 },
+		{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+	},
+	{ -- Fase 10
+		{ 1, 1, 0, 1, 1, 0, 1, 1, 0, 1 },
+		{ 0, 0, 0, 0, 0, 0, 0, 1, 0, 0 },
+		{ 0, 1, 1, 0, 1, 1, 0, 1, 1, 0 },
+		{ 0, 0, 0, 0, 0, 1, 0, 0, 0, 0 },
+		{ 1, 0, 1, 1, 0, 1, 1, 0, 1, 1 },
+		{ 0, 0, 0, 1, 0, 0, 1, 0, 0, 0 },
+		{ 1, 1, 1, 1, 1, 0, 1, 1, 0, 1 },
+		{ 0, 0, 0, 0, 0, 0, 0, 1, 0, 0 },
+		{ 0, 1, 1, 1, 1, 1, 0, 1, 1, 0 },
+		{ 0, 0, 0, 0, 0, 1, 0, 0, 1, 0 },
+	},
 	{ -- Fim
 		{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
 		{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
@@ -135,12 +177,14 @@ local cordenadas_obstaculos = {
 -- JOGADOR: guarda a imagem, posicao inicial e dimensoes
 local img_jogador = canvas:new('jogador.png')
 local dx_jogador, dy_jogador = img_jogador:attrSize()
-local jogador = { img = img_jogador, x = cordenadas_jogador[fase][1]*bloco, y = cordenadas_jogador[fase][2]*bloco, dx = dx_jogador, dy = dy_jogador }
+local jogador = { img = img_jogador, x = cordenadas_jogador[fase][1] * bloco, y = cordenadas_jogador[fase][2] * bloco,
+	dx = dx_jogador, dy = dy_jogador }
 
 -- CHEGADA: guarda a imagem, posicao inicial e dimensoes
 local img_chegada = canvas:new('chegada.png')
 local dx_chegada, dy_chegada = img_chegada:attrSize()
-local chegada = { img = img_chegada, x = cordenadas_chegada[fase][1]*bloco, y = cordenadas_chegada[fase][2]*bloco, dx = dx_chegada, dy = dy_chegada }
+local chegada = { img = img_chegada, x = cordenadas_chegada[fase][1] * bloco, y = cordenadas_chegada[fase][2] * bloco,
+	dx = dx_chegada, dy = dy_chegada }
 
 -- OBSTÁCULOS: guarda a imagem, posicao inicial e dimensoes
 local img_obstaculo = canvas:new('obstaculo.png')
@@ -148,7 +192,7 @@ local dx_obstaculo, dy_obstaculo = img_obstaculo:attrSize()
 
 local obstaculos = {}
 
-
+-- Atualiza as cordenadas do jogador e da chegada no início da fase
 function atualizarCordenadas()
 	-- Atualiza as cordenadas do jogador
 	jogador.x = cordenadas_jogador[fase][1] * bloco
@@ -178,10 +222,6 @@ function gerarCoordenadas(matriz)
 	return cordenadas
 end
 
-
-
-
-
 function gerarObjetos()
 	-- Gera o mapa através da matriz de acordo com a fase atual
 	local cordenadas = gerarCoordenadas(cordenadas_obstaculos[fase])
@@ -206,11 +246,6 @@ function gerarObjetos()
 		canvas:compose(obstaculos[i].x, obstaculos[i].y, obstaculos[i].img)
 	end
 end
-
-
-
-
-
 
 function gerarTexto(texto, tamanho, cor, x, y)
 	canvas:attrColor(cor)
@@ -240,27 +275,14 @@ function redraw()
 	canvas:flush()
 end
 
-
-
-
 -- Função para verificar a colisão entre objetos
 function collide(A, B)
 	return A.x < B.x + B.dx and A.x + A.dx > B.x and A.y < B.y + B.dy and A.y + A.dy > B.y
 end
 
-
-
-
-
-local IGNORE = false
-
 -- Funcao de tratamento de eventos:
 function handler(evt)
-	if IGNORE then
-		return
-	end
 
-	print("teste")
 	-- apenas eventos de tecla me interessam
 	if evt.class == 'key' and evt.type == 'press'
 	then
@@ -294,8 +316,8 @@ function handler(evt)
 		else
 			for i = 1, #obstaculos do
 				if collide(jogador, obstaculos[i]) then
-					jogador.x = cordenadas_jogador[fase][1]*bloco
-					jogador.y = cordenadas_jogador[fase][2]*bloco
+					jogador.x = cordenadas_jogador[fase][1] * bloco
+					jogador.y = cordenadas_jogador[fase][2] * bloco
 				end
 			end
 		end

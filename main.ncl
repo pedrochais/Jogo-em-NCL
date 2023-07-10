@@ -4,8 +4,8 @@
 <head>
 
 <regionBase>
-    <region width="200px" height="50px"  left="10%"  top="40%" id="rgWin"/>
-    <region width="500px" height="500px"  right="10%" top="10%" id="rgLua"/>
+    <region width="300px" height="50px"  left="35%"  top="0%" id="rgWin"/>
+    <region width="500px" height="500px"  left="22.5%" top="10%" id="rgLua"/>
 </regionBase>
 
 <descriptorBase>
